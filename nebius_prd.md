@@ -2,15 +2,6 @@
 
 ---
 
-### Document Version & Owner Info
-
-*   **Document Version:** 1.0
-*   **Date:** October 26, 2023
-*   **Product Owner:** [Your Name/Senior Product Manager]
-*   **Stakeholders:** Engineering Leads, Design Lead, AI/ML Research Team, Customer Support Lead, Marketing Lead
-
----
-
 ### 1. Objective & Vision
 
 **Objective:** To significantly enhance developer productivity, reduce support burden, and improve user satisfaction on the Nebius platform by providing intelligent, real-time, context-aware AI assistance. AINA aims to lower the barrier to entry for complex AI infrastructure and accelerate the development lifecycle for all Nebius users.
