@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager Case Study - Nebius</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+    --bg-light: #0A0E1A;
+    --bg-secondary: #1B243B;
+    --card-bg: #2C3A57;
+    --border: #44557A;
+    --primary: #4C51BF;
+    --primary-hover: #6A70EB;
+    --primary-glow: rgba(76, 81, 191, 0.4);
+    --text-main: #E0E7FF;
+    --text-muted: #9BA8C8;
+    --success: #10B981;
+    --success-bg: #D1FAE5;
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--bg-secondary);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.background-decor {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    z-index: -1;
+    opacity: 0.08;
+}
+.blur-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    top: -50px;
+    right: -50px;
+}
+.blur-2 {
+    width: 350px;
+    height: 350px;
+    background: #06B6D4;
+    bottom: -100px;
+    left: -100px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: var(--bg-light);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    font-family: var(--font-heading);
+}
+
+.logo-brand {
+    color: var(--primary);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--text-main), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-heading);
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.btn.primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(254, 94, 0, 0.3);
+}
+
+.btn.large {
+    padding: 14px 36px;
+    font-size: 1.1rem;
+}
+
+.intro-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    max-width: 800px;
+}
+
+.quick-links {
+    display: flex;
+    gap: 20px;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 16px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+    flex: 1;
+}
+
+.quick-link:hover {
+    background: var(--bg-light);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.quick-link .icon {
+    font-size: 2rem;
+}
+
+.quick-link div {
+    display: flex;
+    flex-direction: column;
+}
+
+.quick-link strong {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.quick-link span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.tabs-header {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tab-btn:hover {
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary);
+}
+
+.tab-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    min-height: 400px;
+}
+
+.hidden {
+    display: none;
+}
+
+.content-body h1, .content-body h2, .content-body h3 {
+    margin-top: 35px;
+    color: var(--text-main);
+    font-family: var(--font-heading);
+}
+
+.content-body h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.content-body h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.content-body h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.content-body p, .content-body li {
+    color: var(--text-main);
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.content-body ul, .content-body ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+}
+
+.content-body li {
+    margin-bottom: 8px;
+}
+
+.content-body strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.content-body em {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.content-body code {
+    background-color: var(--bg-secondary);
+    color: #EF4444;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.content-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="background-decor blur-1"></div>
+    <div class="background-decor blur-2"></div>
+    
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-brand">nebius</span> | PM Portfolio Application
+        </div>
+        <div class="actions">
+            <a href="https://stitch.withgoogle.com/projects/16809493958950710063" target="_blank" class="btn primary">View Stitch Prototypes</a>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="intro-card">
+            <h1>Product Management Strategy & Artifacts</h1>
+            <p class="subtitle">Prepared for the Product Manager role at Nebius. Complete with Market Investigation, product ideation, detailed PRD, and design layouts.</p>
+            
+            <div class="quick-links">
+                <a href="https://stitch.withgoogle.com/projects/16809493958950710063" target="_blank" class="quick-link">
+                    <span class="icon">🎨</span>
+                    <div>
+                        <strong>Stitch Workspace</strong>
+                        <span>Review screen mockups and design system rules</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab('investigation')">1. Market Investigation</button>
+            <button class="tab-btn" onclick="switchTab('prd')">2. Product Requirement Document (PRD)</button>
+            <button class="tab-btn" onclick="switchTab('design')">3. Design Guidelines</button>
+        </div>
+        
+        <section class="tab-content" id="investigation">
+            <div class="content-body">
+                <h2>Investigation Report: Nebius</h2>
+
+<h3>1. Executive Summary & Value Proposition:</h3>
+
+<p>Nebius is a leading technology company that provides full-stack cloud infrastructure and services specifically tailored for the global Artificial Intelligence (AI) industry. Headquartered in Amsterdam and listed on Nasdaq (NBIS), the company emerged in 2024 from the international assets of the former Yandex N.V., pivoting to focus entirely on AI infrastructure.</p>
+
+<p>Nebius's core mission is to build the foundational infrastructure required to support the explosive growth of the global AI industry, spanning the entire AI journey from data preparation and model training to tuning, production runtime, and deployment.</p>
+
+<p>Their unique value proposition lies in offering a "best-of-both-worlds" solution: the power and scale of a hyperscaler cloud combined with the cost-efficiency and flexibility of a specialized provider. Nebius differentiates itself by being an AI-native cloud platform, built from the ground up for machine learning workloads, rather than adapting general-purpose cloud infrastructure. They provide access to cutting-edge NVIDIA GPUs (including H100, H200, and upcoming Blackwell platforms), managed Kubernetes, an AI Studio, and emphasize open-source tools and standard frameworks, simplifying adoption for developers. This approach translates to significant cost savings (reportedly up to 50% reduction in GPU compute expenses compared to leading public cloud services) and predictable performance for demanding AI workloads due to dedicated infrastructure and an AI-driven resource allocation system.</p>
+
+<h3>2. Target Users & Personas:</h3>
+
+<p>Nebius primarily targets "AI builders" and enterprises worldwide that are developing and deploying AI applications. Their customer segments include AI startups, model developers, and large enterprises across various industries.</p>
+
+<p><strong>Persona 1: The AI/ML Startup Founder/Lead Developer</strong></p>
+
+<ul>
+<li><strong>Background:</strong> Alex is the CTO of a fast-growing AI startup focused on developing a new large language model (LLM) for personalized customer service. His team is lean, highly skilled in machine learning, but lacks extensive DevOps or infrastructure management expertise.</li>
+<li><strong>Needs & Goals:</strong> Alex needs reliable, high-performance GPU compute capacity that can scale rapidly to accommodate intensive model training and fine-tuning. Cost efficiency is critical for managing startup burn rate, and he prefers a platform that simplifies infrastructure management so his team can focus on core AI development. He values predictable pricing and access to the latest GPU technologies. Ease of integration with existing ML frameworks and robust support for distributed training are also key.</li>
+<li><strong>Pain Points:</strong> Traditional hyperscalers can be complex and expensive for specialized AI workloads, often requiring significant setup and optimization effort. Sourcing and managing dedicated GPU hardware is time-consuming and capital-intensive. He worries about "noisy neighbor" issues affecting training stability on shared infrastructure.</li>
+</ul>
+<p><strong>Persona 2: The Enterprise AI/Data Science Lead (e.g., in Life Sciences or Financial Services)</strong></p>
+
+<ul>
+<li><strong>Background:</strong> Dr. Anya Sharma leads the AI innovation division at a large pharmaceutical company, working on AI-driven drug discovery and genomic analysis. Her team handles massive datasets and complex simulations, requiring immense computational power and stringent data security and compliance.</li>
+<li><strong>Needs & Goals:</strong> Anya requires a highly scalable, high-performance cloud platform that can handle large-scale genomic analysis, complex simulations, and efficient deployment of AI models for production. Data sovereignty, security, and compliance (e.g., GDPR, HIPAA) are paramount. She needs a platform that offers dedicated resources, stable performance, and robust management tools for large-scale enterprise deployments, along with expert engineering support to integrate with existing enterprise systems. Cost predictability and optimization for long-term projects are also important.</li>
+<li><strong>Pain Points:</strong> Migrating sensitive data to public clouds can be challenging due to compliance concerns. Ensuring consistent, high performance for critical research workloads on shared infrastructure can be difficult. Building and maintaining an in-house GPU cluster is prohibitively expensive and resource-intensive for the required scale.</li>
+</ul>
+<h3>3. User Reviews & Pain Points:</h3>
+
+<p>Nebius receives generally positive feedback for its core offering, though some areas indicate room for improvement.</p>
+
+<p><strong>Major Complaints, Friction Points, and User Reviews:</strong></p>
+
+<ul>
+<li><strong>Strengths:</strong> Users frequently commend Nebius for its self-serve setup, making it easy to get started. The platform's GPU reliability and consistently strong, predictable performance are highly valued, particularly for multi-host training across thousands of H100 GPUs. Its comprehensive AI stack, including managed Kubernetes and SkyPilot, is praised for simplifying workflows. Flexible and competitive pricing, offering significant cost savings (up to 50% on GPU compute) compared to leading public clouds, is a major draw. Dedicated engineering support for integration and optimization is also highlighted as a positive.</li>
+<li><strong>Weaknesses/Pain Points:</strong></li>
+<ul>
+<li><strong>Support Delays and Documentation:</strong> Some users have reported slower response times from support compared to major providers like AWS or CoreWeave. Additionally, documentation for advanced use cases is perceived as limited, creating friction for teams exploring complex implementations.</li>
+<li><strong>Narrower Ecosystem:</strong> While purpose-built for AI, Nebius's ecosystem is seen as narrower for general cloud workloads compared to more mature hyperscalers. This means teams needing a broad array of non-AI-specific services might find themselves looking for other providers or managing a multi-cloud strategy.</li>
+<li><strong>Capacity Planning Challenges:</strong> One review mentions challenges related to capacity planning, suggesting that while the platform delivers excellent GPU quality, managing and ensuring availability for all demands might sometimes be an issue.</li>
+<li><strong>Limited Public Reviews:</strong> While some positive testimonials and case studies exist, a broader base of public, independent user reviews (e.g., on platforms like Trustpilot) appears limited, with only one review on Trustpilot scoring average. This could indicate a need for more proactive engagement with user review platforms.</li>
+</ul>
+</ul>
+<p><strong>What is holding the product back:</strong></p>
+
+<p>The primary factors holding Nebius back appear to be the nascent maturity of its broader ecosystem and support infrastructure compared to established hyperscalers. While its AI-native focus is a strength, it also means a narrower appeal for general-purpose cloud needs. Addressing the reported support response times and expanding documentation for complex scenarios would likely enhance user satisfaction and adoption. Furthermore, the inherent capital intensity of building and expanding gigawatt-scale AI infrastructure is a continuous challenge, requiring significant investment and strategic financing to keep pace with demand.</p>
+
+<h3>4. Key Markets & Competitors:</h3>
+
+<p><strong>Main Geographic and Economic Markets:</strong></p>
+
+<p>Nebius is headquartered in Amsterdam, Netherlands, and has a strong international footprint, with operations and R&D hubs across Europe, North America, and Israel. The company is aggressively expanding its data center presence, including significant GPU clusters in Finland, and planned or under-construction "AI factories" in the United States, such as in Kansas City, Missouri, Vineland, New Jersey, and Birmingham, Alabama.</p>
+
+<p>Economically, Nebius operates within the rapidly expanding AI cloud computing and infrastructure industry, targeting the GPU-as-a-Service and AI cloud sector, projected to reach $260 billion by 2030. Its growth is driven by the surging demand for AI training and inference capacity.</p>
+
+<p><strong>Top 3 Competitors and their Strengths/Weaknesses:</strong></p>
+
+<p>Nebius operates in a highly competitive landscape against both general-purpose cloud giants and specialized AI cloud providers.</p>
+
+<ol>
+<li><strong>Hyperscalers (e.g., Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP))</strong></li>
+<ul>
+<li><strong>Strengths:</strong></li>
+<ul>
+<li><strong>Vast Ecosystem & Scale:</strong> Offer a comprehensive suite of cloud services beyond just AI, including databases, networking, analytics, and serverless functions, alongside massive global infrastructure.</li>
+<li><strong>Established Market Presence:</strong> Deep relationships with enterprises and a proven track record of reliability and security.</li>
+<li><strong>Integration:</strong> Seamless integration with their own extensive product portfolios.</li>
+</ul>
+<li><strong>Weaknesses:</strong></li>
+<ul>
+<li><strong>Cost for AI Workloads:</strong> Often charge higher margins for specialized AI services, and their general-purpose infrastructure can be less cost-efficient for pure AI workloads.</li>
+<li><strong>Proprietary Toolchains:</strong> Tend to push their own AI toolchains, which can create vendor lock-in and complicate migration.</li>
+<li><strong>Less AI-Native Focus:</strong> AI services are often layered onto existing general cloud infrastructure, rather than being built from the ground up for AI efficiency.</li>
+</ul>
+</ul>
+<li><strong>CoreWeave</strong></li>
+<ul>
+<li><strong>Strengths:</strong></li>
+<ul>
+<li><strong>High-Scale GPU Cloud:</strong> One of the largest "neocloud" providers, specializing in high-performance GPU computing for AI.</li>
+<li><strong>Enterprise Backing & Funding:</strong> Strong financial backing and serves marquee clients like Microsoft and OpenAI.</li>
+<li><strong>Massive Capacity:</strong> Operates GPU data centers at hyperscale, providing significant capacity for demanding AI training runs.</li>
+</ul>
+<li><strong>Weaknesses:</strong></li>
+<ul>
+<li><strong>Focus on Raw Capacity:</strong> Its primary value proposition often centers on providing access to GPUs and power density, with customers still largely responsible for assembling their own training pipelines and execution systems.</li>
+<li><strong>Valuation:</strong> Can have high valuations due to rapid growth.</li>
+<li><strong>Software Stack:</strong> Often relies heavily on open-source orchestration layers (e.g., Kubernetes, Slurm) rather than a fully internalized, optimized AI software stack.</li>
+</ul>
+</ul>
+<li><strong>Lambda Labs (Lambda Cloud)</strong></li>
+<ul>
+<li><strong>Strengths:</strong></li>
+<ul>
+<li><strong>"AI Developer Cloud":</strong> Strong focus on ease-of-use and fast scaling for AI researchers and developers.</li>
+<li><strong>Developer-Friendly:</strong> Offers a range of NVIDIA GPUs with pre-installed ML frameworks, Jupyter notebooks, and InfiniBand interconnected clusters for distributed training.</li>
+<li><strong>NVIDIA Partnership:</strong> NVIDIA is an investor, ensuring early access to the latest GPU architectures.</li>
+</ul>
+<li><strong>Weaknesses:</strong></li>
+<ul>
+<li><strong>Market Recognition:</strong> Smaller company with less overall market recognition compared to industry giants or even CoreWeave.</li>
+<li><strong>Ecosystem Maturity:</strong> Documentation and support ecosystem may be less mature than established providers.</li>
+<li><strong>Enterprise Scale:</strong> Enterprise-scale deployments might still require direct contact for custom contracts, potentially lacking the self-service capabilities for massive scale that larger providers offer.</li>
+</ul>
+</ul>
+</ol>
+<h3>5. Existing Design & Platform Analysis:</h3>
+
+<p><strong>Platforms:</strong></p>
+
+<p>Nebius operates as a cloud-native platform, primarily accessible via the web and APIs. It offers:</p>
+
+<ul>
+<li><strong>Compute:</strong> Virtual machines and containers over VMs.</li>
+<li><strong>Managed Kubernetes:</strong> A fully managed container orchestration layer pre-optimized for AI workloads.</li>
+<li><strong>Managed Service for Soperator:</strong> Provides Slurm-based clusters for distributed ML/AI training.</li>
+<li><strong>AI Studio:</strong> A developer-friendly platform for deploying models or running inference using pre-trained models.</li>
+<li><strong>Storage:</strong> POSIX-compliant VM volumes, Amazon S3-like buckets, registries for Docker and Helm artifacts, and PostgreSQL databases.</li>
+<li><strong>AI Services:</strong> Managed Inference, Agentic Search (through acquisition of Tavily), Human Validation (Toloka), AI Orchestration, Serverless AI, DataOps, ModelOps.</li>
+<li><strong>Observability:</strong> Monitoring and Logging services (currently in preview).</li>
+</ul>
+<p>There is no explicit mention of native iOS, Android, or traditional desktop applications for the core cloud platform, suggesting that interaction is primarily through web interfaces, command-line interfaces (CLI), and APIs.</p>
+
+<p><strong>Design Language, Brand Aesthetic, Colors, and Typography:</strong></p>
+
+<p>Nebius presents a highly professional, modern, and distinctly tech-centric brand aesthetic.</p>
+
+<ul>
+<li><strong>Design Language:</strong> The design is functional and minimalist, focusing on clarity and the communication of complex technical capabilities. It prioritizes a streamlined user experience for AI practitioners. The platform emphasizes self-service setup and clear navigation for managing AI workloads.</li>
+<li><strong>Brand Aesthetic:</strong> The overall aesthetic is serious, sophisticated, and innovative. It evokes a sense of cutting-edge technology and high performance, aiming to position Nebius as a leader in advanced AI infrastructure. Visual elements often include abstract, glowing, or networked patterns, symbolizing data flow, connectivity, and the intricate nature of AI. Imagery consistently features data centers, GPU arrays, and conceptual representations of AI and computation.</li>
+<li><strong>Colors:</strong> The primary color palette leans heavily into dark themes, utilizing deep blues, purples, and blacks as background colors, often with subtle gradients to add depth. This dark mode aesthetic is common in tech to reduce eye strain and highlight content. Accent colors, such as a vibrant teal/light blue and occasional bright orange/yellow, are strategically used for interactive elements, highlights, and calls to action, providing visual contrast and energy.</li>
+<li><strong>Typography:</strong> The typography employs clean, sans-serif fonts throughout its website and documentation. These fonts are highly readable and functional, aligning with a professional and technical brand identity. The style is likely a modern grotesque or neo-grotesque (e.g., similar to Inter, DM Sans, or a custom variant), chosen for its legibility and contemporary feel in technical contexts rather than for highly stylized or editorial purposes.</li>
+</ul>
+<h3>6. Potential Business Opportunities:</h3>
+
+<p>Nebius has several strategic avenues to double its growth, building upon its robust AI infrastructure and specialized offerings:</p>
+
+<ol>
+<li><strong>Expand "Up the Stack" with Advanced Managed Services:</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> While Nebius provides core infrastructure, moving further into higher-level, fully managed AI services (beyond raw compute) can increase customer stickiness, capture more value, and attract customers who prefer solutions over infrastructure management.</li>
+<li><strong>Actions:</strong> Develop and heavily promote sophisticated <strong>Managed Inference services</strong> that optimize cost and latency for deployed models, potentially offering pay-per-token models. Expand <strong>AI Orchestration and MLOps tools</strong> to provide end-to-end lifecycle management for complex AI workflows, including continuous integration/delivery for models (CI/CD for ML).</li>
+<li><strong>Growth Impact:</strong> This would allow Nebius to target a broader segment of enterprises and startups looking for "AI factories" rather than just GPU providers, potentially shifting more revenue towards higher-margin software services and increasing average revenue per user (ARPU).</li>
+</ul>
+<li><strong>Deepen Industry-Specific AI Solutions and Professional Services:</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> Nebius already identifies key industries like Life Sciences & Healthcare, Robotics & Physical AI, Financial Services, Media & Entertainment, and Retail. Providing deeply specialized solutions and expert professional services for these verticals can unlock significant growth.</li>
+<li><strong>Actions:</strong> Develop pre-built, industry-specific templates, optimized models, and compliance frameworks. Offer <strong>generative AI professional services</strong> where Nebius experts help businesses design, build, and deploy custom AI solutions tailored to their unique needs (e.g., for drug discovery, fraud detection, personalized retail experiences). Focus on agentic AI solutions, where customers pay for outcomes or completed tasks rather than just compute, targeting large enterprises seeking to automate complex workflows.</li>
+<li><strong>Growth Impact:</strong> This strategy would differentiate Nebius from general cloud providers by demonstrating deep domain expertise, enabling them to win larger, more strategic enterprise contracts and drive higher-value engagements.</li>
+</ul>
+<li><strong>Aggressive Expansion of Channel Partner Program and Developer Ecosystem:</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> Nebius has identified partners as a major accelerator for new markets and enterprise expansion. A robust partner ecosystem can significantly extend its reach and accelerate adoption.</li>
+<li><strong>Actions:</strong> Launch and scale the formal <strong>partner program</strong> (expected July/August 2026) with clear tiers, incentives, and dedicated support for VARs, system integrators, and independent software vendors (ISVs). Leverage "Nebius Academy" for comprehensive education on AI and platform usage for various personas. Foster a vibrant developer community with enhanced documentation for advanced use cases, more open-source contributions, and active engagement on developer forums to address current pain points.</li>
+<li><strong>Growth Impact:</strong> A strong partner network would enable Nebius to reach new customer segments more efficiently, increase sales velocity, and provide localized support and integration expertise, significantly boosting its market penetration and growth. This would also address existing pain points around documentation and support.</li>
+</ul>
+<li><strong>Strategic Acquisitions and Integration for "Full-Stack" AI:</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> Nebius already includes Avride (autonomous mobility) and TripleTen (ed-tech) in its group, along with stakes in Toloka (AI data platform) and Clickhouse. Further strategic acquisitions that bolster its "full-stack" AI vision can enhance its competitive moat.</li>
+<li><strong>Actions:</strong> Continue to integrate its acquired assets like Tavily (agentic search) more deeply into its core AI cloud offering. Explore acquisitions of companies specializing in areas like AI-specific data governance, advanced security for AI models, or unique AI optimization techniques that would complement its existing infrastructure and software stack.</li>
+<li><strong>Growth Impact:</strong> These integrations and acquisitions would allow Nebius to offer a more compelling, comprehensive, and seamless AI development and deployment experience, reducing the need for customers to piece together solutions from multiple vendors and solidifying its position as a "one-stop shop" for AI builders. This would also enhance customer stickiness and drive organic growth through value-added services.</li>
+</ul>
+</ol>
+            </div>
+        </section>
+        
+        <section class="tab-content hidden" id="prd">
+            <div class="content-body">
+                <h2>Nebius AI Native Assistant (AINA) - Product Requirements Document</h2>
+
+<hr>
+
+<h3>Document Version & Owner Info</h3>
+
+<ul>
+<li><strong>Document Version:</strong> 1.0</li>
+<li><strong>Date:</strong> October 26, 2023</li>
+<li><strong>Product Owner:</strong> [Your Name/Senior Product Manager]</li>
+<li><strong>Stakeholders:</strong> Engineering Leads, Design Lead, AI/ML Research Team, Customer Support Lead, Marketing Lead</li>
+</ul>
+<hr>
+
+<h3>1. Objective & Vision</h3>
+
+<p><strong>Objective:</strong> To significantly enhance developer productivity, reduce support burden, and improve user satisfaction on the Nebius platform by providing intelligent, real-time, context-aware AI assistance. AINA aims to lower the barrier to entry for complex AI infrastructure and accelerate the development lifecycle for all Nebius users.</p>
+
+<p><strong>Vision:</strong> AINA becomes the indispensable co-pilot for every AI builder on Nebius, seamlessly guiding them from initial setup and model training to production deployment and cost optimization, making complex AI infrastructure approachable, efficient, and enjoyable. It embodies Nebius's AI-native philosophy by using AI to empower AI creators.</p>
+
+<hr>
+
+<h3>2. Target Audience</h3>
+
+<p>AINA is designed for all users interacting with the Nebius platform, with particular emphasis on those involved in building, deploying, and managing AI/ML workloads.</p>
+
+<ul>
+<li><strong>The AI/ML Startup Founder/Lead Developer (Persona: Alex):</strong> Needs help optimizing costs, understanding complex setups for distributed training, quickly debugging ML code, and generating infrastructure-as-code. AINA will simplify operational complexities, allowing Alex’s lean team to focus on core AI innovation.</li>
+<li><strong>The Enterprise AI/Data Science Lead (Persona: Dr. Anya Sharma):</strong> Seeks guidance on ensuring data sovereignty and compliance, integrating Nebius with existing enterprise systems, and ensuring stable, secure production deployments for critical workloads. AINA will provide expert advice on complex enterprise requirements.</li>
+<li><strong>Data Scientists & ML Engineers:</strong> Individuals primarily focused on model development, training, and fine-tuning. They need assistance with framework integration, debugging model errors, performance optimization techniques, and understanding advanced platform capabilities.</li>
+<li><strong>DevOps/MLOps Engineers:</strong> Responsible for infrastructure provisioning, CI/CD for ML, monitoring, and deployment. They will use AINA for generating Kubernetes configurations, automating resource allocation, troubleshooting pipeline failures, and optimizing infrastructure costs.</li>
+<li><strong>New Nebius Users:</strong> Anyone onboarding to the platform, needing step-by-step guidance, explanations of services, and a streamlined path to their first successful deployment.</li>
+</ul>
+<hr>
+
+<h3>3. User Stories (Minimum 5)</h3>
+
+<ol>
+<li><strong>As an ML Engineer</strong>, I want to get real-time debugging suggestions when my training job fails with an obscure error message (e.g., CUDA OOM, distributed training deadlock), so that I can quickly identify and fix the issue without extensive manual log analysis or searching external forums.</li>
+<li><strong>As a Startup Founder (Alex)</strong>, I want AINA to analyze my current model training needs and suggest the most cost-effective GPU instance types and configurations on Nebius, considering my budget, desired performance, and available capacity, so that I can manage my startup's burn rate efficiently.</li>
+<li><strong>As an MLOps Engineer</strong>, I want AINA to generate the correct <code>kubectl</code> commands, Nebius API calls, or Terraform configuration for deploying my custom model to a managed Kubernetes cluster on Nebius, based on my project's structure and target environment, so that I can automate my deployment pipeline faster and with fewer errors.</li>
+<li><strong>As an Enterprise Data Scientist (Dr. Anya Sharma)</strong>, I want AINA to provide clear guidance and checklist items on ensuring data sovereignty (e.g., "data never leaves EU") and compliance (e.g., GDPR, HIPAA) for my sensitive genomic dataset storage and processing on Nebius, so that I can confidently meet strict regulatory requirements.</li>
+<li><strong>As a New Nebius User</strong>, I want AINA to walk me through the end-to-end steps of setting up my first distributed training environment using Nebius Managed Kubernetes (including creating a cluster, provisioning GPUs, and launching a sample job), along with relevant documentation links, so that I can get started quickly and confidently.</li>
+<li><strong>As a Data Scientist</strong>, I want AINA to explain a complex section of the Nebius documentation (e.g., advanced network configurations for multi-host training) in simpler terms or provide a concrete, runnable code example tailored to my current project, so that I can understand and apply advanced features more easily.</li>
+</ol>
+<hr>
+
+<h3>4. Functional Requirements & Specifications</h3>
+
+<p>AINA will be an intelligent, interactive AI assistant deeply integrated into the Nebius ecosystem.</p>
+
+<h4>4.1. AINA Chat Interface (MVP)</h4>
+
+<ul>
+<li><strong>FR-1.1: Web Console Integration:</strong> A persistent, easily accessible chat widget will be integrated into the Nebius web console, visible on all pages. It should be dismissible but readily resumable.</li>
+<li><strong>FR-1.2: Natural Language Understanding (NLU):</strong> AINA must accurately understand user queries in natural language, including technical jargon specific to AI/ML and cloud computing, and infer user intent.</li>
+<li><strong>FR-1.3: Response Generation:</strong> Generate accurate, concise, and helpful text-based responses. Responses should be formatted for readability (e.g., code blocks, bullet points, bolding).</li>
+<li><strong>FR-1.4: Code Snippet Generation:</strong> Ability to generate executable code snippets (e.g., Python SDK, CLI commands, Kubernetes YAML, Terraform configurations, Dockerfiles) for Nebius APIs and services based on user requests and context.</li>
+<li><strong>FR-1.5: Documentation Contextual Linking:</strong> Responses will include direct, deep links to relevant sections of the official Nebius documentation, APIs, and tutorials for further reading.</li>
+<li><strong>FR-1.6: Conversation History & Context:</strong> Maintain conversation context within a single session, allowing follow-up questions to build on previous interactions. Provide a mechanism to clear conversation history.</li>
+<li><strong>FR-1.7: User Feedback Mechanism:</strong> Allow users to rate the helpfulness of AINA's responses (thumbs up/down) with an optional text field for qualitative comments. This feedback will be crucial for continuous improvement.</li>
+<li><strong>FR-1.8: Typographic & Branding Consistency:</strong> AINA's chat interface and responses must adhere to Nebius's established design language, brand aesthetic, colors, and typography.</li>
+</ul>
+<h4>4.2. Contextual Awareness (MVP)</h4>
+
+<p>AINA's intelligence is powered by its ability to understand the user's current environment and actions.</p>
+
+<ul>
+<li><strong>FR-2.1: Current Page/Service Context:</strong> AINA must infer and utilize which Nebius service, resource, or console page the user is currently viewing (e.g., "VM Instances," "Managed Kubernetes Cluster X," "Storage Bucket Y").</li>
+<li><strong>FR-2.2: Active Project/Resource Metadata Access (Read-Only):</strong> AINA will have read-only access to metadata about the user's active project, running instances (VMs, containers), storage buckets, deployed models, and other Nebius resources within the current account. This access must strictly adhere to the user's RBAC.</li>
+<li><strong>FR-2.3: Basic Log & Error Analysis:</strong> Ability to process and interpret common error messages and logs from running jobs (e.g., typical Python stack traces, Kubernetes event logs, Nebius service logs) to suggest basic troubleshooting steps. This requires integration with Nebius's monitoring and logging services.</li>
+</ul>
+<h4>4.3. Knowledge Base & Intelligence (MVP)</h4>
+
+<p>AINA is powered by a robust and up-to-date knowledge base.</p>
+
+<ul>
+<li><strong>FR-3.1: Comprehensive Nebius Documentation Indexing:</strong> AINA's primary knowledge base will include all official, public Nebius documentation, API references, FAQs, tutorials, and public blog posts.</li>
+<li><strong>FR-3.2: Nebius Best Practices Integration:</strong> AINA will be trained on Nebius best practices for ML training, deployment, cost optimization, security, and specific AI workloads (e.g., LLMs, computer vision).</li>
+<li><strong>FR-3.3: GPU/Hardware Knowledge:</strong> Deep understanding of available NVIDIA GPU types (H100, H200, Blackwell), their specifications, performance characteristics, and optimal use cases on Nebius.</li>
+<li><strong>FR-3.4: LLM Integration:</strong> AINA will leverage Nebius's internal large language models (LLMs) or a combination of Nebius-proprietary and open-source models for advanced natural language processing, semantic search, and generative capabilities.</li>
+<li><strong>FR-3.5: Knowledge Base Update Mechanism:</strong> An internal process and tooling will be required to regularly update AINA's knowledge base as new Nebius features, documentation, and best practices are released.</li>
+</ul>
+<h4>4.4. Assistance Capabilities (MVP)</h4>
+
+<ul>
+<li><strong>FR-4.1: Troubleshooting & Debugging (Basic):</strong> Provide initial diagnostic steps and common fixes for training job failures, deployment issues, connectivity problems, and API errors, leveraging FR-2.3.</li>
+<li><strong>FR-4.2: Feature & Service Explanation:</strong> Clearly explain Nebius services, features, their benefits, and how they compare to alternatives.</li>
+<li><strong>FR-4.3: Configuration Guidance:</strong> Offer recommendations for service configurations (e.g., VM sizes, storage types, network settings, GPU counts) based on user needs, performance goals, and cost considerations.</li>
+<li><strong>FR-4.4: Code Example Generation:</strong> Generate relevant code examples for SDKs, APIs, and CLI commands based on user intent and current context.</li>
+<li><strong>FR-4.5: Cost Optimization Tips:</strong> Provide basic, context-aware suggestions for reducing costs (e.g., "Consider using preemptible instances for this training job").</li>
+</ul>
+<h4>4.5. Security & Privacy (MVP)</h4>
+
+<ul>
+<li><strong>FR-5.1: Data Isolation & Non-Exposure:</strong> AINA must strictly adhere to data isolation principles, ensuring that no sensitive user data or information about one user's environment is exposed to other users or external models.</li>
+<li><strong>FR-5.2: Role-Based Access Control (RBAC) Adherence:</strong> AINA's access to user resources and data must strictly adhere to the user's existing Nebius RBAC permissions. It will not be able to perform actions or access information the user themselves cannot.</li>
+<li><strong>FR-5.3: Data Anonymization & Retention:</strong> All interaction data used for AINA's model improvement must be anonymized, stripped of personally identifiable information (PII), and retained only for the necessary duration according to Nebius's data policies.</li>
+<li><strong>FR-5.4: Compliance with Nebius Security Policies:</strong> AINA's underlying infrastructure, data processing, and operational procedures must fully comply with all Nebius internal and external security, privacy, and data governance policies (e.g., GDPR, SOC 2).</li>
+<li><strong>FR-5.5: No State-Changing Actions:</strong> AINA, in its MVP, will be strictly advisory and informational. It will NOT perform any state-changing actions (e.g., starting/stopping VMs, deploying resources) on behalf of the user. Any suggestions for such actions will be presented as copy-pasteable code snippets for the user to execute manually.</li>
+</ul>
+<hr>
+
+<h3>5. Non-Functional Requirements</h3>
+
+<ul>
+<li><strong>Performance:</strong></li>
+<ul>
+<li><strong>NFR-1.1: Response Latency:</strong> AINA should respond to user queries within 2-5 seconds for common requests, and under 10 seconds for complex queries requiring deeper context analysis.</li>
+<li><strong>NFR-1.2: Concurrency:</strong> The underlying AI inference and service architecture must be capable of supporting thousands of concurrent user interactions without degradation in response time or accuracy.</li>
+</ul>
+<li><strong>Scalability:</strong></li>
+<ul>
+<li><strong>NFR-2.1: Infrastructure Scalability:</strong> The backend AI inference engines, knowledge retrieval systems, and contextual processing services must be designed for horizontal scalability to accommodate increasing user load and data volume.</li>
+<li><strong>NFR-2.2: Knowledge Base Growth:</strong> The system must efficiently incorporate new documentation, FAQs, tutorials, and internal best practices as Nebius's platform and offerings evolve, without requiring major architectural overhauls.</li>
+</ul>
+<li><strong>Reliability:</strong></li>
+<ul>
+<li><strong>NFR-3.1: Availability:</strong> AINA service uptime target: 99.9% (excluding planned maintenance).</li>
+<li><strong>NFR-3.2: Accuracy:</strong> Aim for 85%+ accuracy in responses for common queries, with continuous improvement driven by user feedback and internal reviews.</li>
+</ul>
+<li><strong>Security:</strong></li>
+<ul>
+<li><strong>NFR-4.1: Data Encryption:</strong> All data in transit (between user and AINA, and within AINA's backend services) and at rest (knowledge base, interaction logs) related to AINA must be encrypted using industry-standard protocols.</li>
+<li><strong>NFR-4.2: Auditability:</strong> All AINA interactions (user queries, system responses, accessed context) must be securely logged for auditing, review, and model improvement purposes, adhering to FR-5.3 & FR-5.4.</li>
+<li><strong>NFR-4.3: Hallucination Mitigation:</strong> Implement robust techniques (e.g., Retrieval Augmented Generation - RAG, confidence scoring, prompt engineering, fact-checking against canonical sources) to minimize "hallucinations" or generation of incorrect/misleading information.</li>
+</ul>
+<li><strong>Maintainability:</strong></li>
+<ul>
+<li><strong>NFR-5.1: Easy Knowledge Base Updates:</strong> Provide streamlined tools and automated processes for easily updating AINA's knowledge base with new product features, documentation, and operational insights.</li>
+<li><strong>NFR-5.2: Observability:</strong> Implement comprehensive monitoring, logging, and alerting for AINA's operational health, latency, error rates, user engagement, and adherence to security policies. This includes specific metrics for LLM performance and cost.</li>
+</ul>
+<li><strong>Usability:</strong></li>
+<ul>
+<li><strong>NFR-6.1: Intuitive Interface:</strong> The chat interface must be intuitive, easy to use, and seamlessly integrated into the Nebius console.</li>
+<li><strong>NFR-6.2: Clear Communication:</strong> AINA's responses must be clear, unambiguous, and formatted for easy consumption by a technical audience.</li>
+</ul>
+</ul>
+<hr>
+
+<h3>6. Success Metrics</h3>
+
+<h4>North Star Metric:</h4>
+
+<p><strong>Reduction in Time-to-Value (TTV) for Nebius users</strong>, measured by the decrease in time taken from account creation to the successful deployment of a first AI model or completion of a significant training job. AINA aims to directly impact this by significantly reducing friction, confusion, and the need for manual research/support.</p>
+
+<h4>Key Performance Indicators (KPIs):</h4>
+
+<ul>
+<li><strong>Engagement & Adoption:</strong></li>
+<ul>
+<li><strong>Monthly Active AINA Users (MAAU):</strong> Number of unique users interacting with AINA at least once per month. Target: 25% of active Nebius users within 6 months of GA.</li>
+<li><strong>Average Queries per MAAU per Session:</strong> Indicator of user reliance and depth of engagement.</li>
+<li><strong>New User AINA Adoption Rate:</strong> Percentage of new Nebius users interacting with AINA within their first 7 days. Target: 50% within 3 months of GA.</li>
+</ul>
+<li><strong>Effectiveness & Quality:</strong></li>
+<ul>
+<li><strong>User Satisfaction Score (USS):</strong> Average rating (e.g., from 1-5 or thumbs up/down) of AINA responses. Target: 85% positive feedback.</li>
+<li><strong>Response Accuracy Score (RAS):</strong> Internal assessment (human-in-the-loop review) of AINA's factual and contextual accuracy. Target: 90%.</li>
+<li><strong>Support Ticket Deflection Rate (STR):</strong> Percentage reduction in support tickets for common issues that AINA is designed to address. Target: 15% reduction in relevant ticket categories within 6 months.</li>
+<li><strong>Average Support Ticket Resolution Time Reduction:</strong> Reduction in time for tickets that <em>do</em> come through, as human agents can focus on more complex issues.</li>
+</ul>
+<li><strong>Productivity & Efficiency:</strong></li>
+<ul>
+<li><strong>Time Spent on Documentation (Proxy):</strong> Monitor internal analytics of time spent on documentation pages for AINA users vs. non-AINA users. Aim for a measurable reduction.</li>
+<li><strong>Adoption Rate of Complex Features:</strong> Increase in the adoption rate of Nebius's more advanced services (e.g., multi-host training, advanced Kubernetes deployments) for AINA users. AINA should make these features more accessible.</li>
+<li><strong>Resource Optimization Suggestions Acceptance Rate:</strong> Percentage of AINA's cost/performance optimization suggestions that users act upon.</li>
+</ul>
+</ul>
+<hr>
+
+<h3>7. Release Plan & Phases</h3>
+
+<p>The development and rollout of AINA will follow an iterative, phased approach, starting with a Minimum Viable Product (MVP) and expanding capabilities based on user feedback and business priorities.</p>
+
+<h4>Phase 1: MVP (Minimum Viable Product) - Target: Q1 2025</h4>
+
+<ul>
+<li><strong>Focus:</strong> Establish core chat functionality, basic contextual awareness within the Nebius web console, and a foundational knowledge base to address common developer pain points around documentation and simple troubleshooting.</li>
+<li><strong>Key Features (per FR sections):</strong></li>
+<ul>
+<li><strong>AINA Chat Interface:</strong> FR-1.1 to FR-1.7 (Web Console Integration, NLU, Response Generation, Code Snippets, Docs Linking, History, Feedback, Branding).</li>
+<li><strong>Contextual Awareness:</strong> FR-2.1 (Current Page/Service Context).</li>
+<li><strong>Knowledge Base & Intelligence:</strong> FR-3.1, FR-3.2 (core subset), FR-3.3 (subset), FR-3.4 (LLM Integration), FR-3.5 (initial KB update process).</li>
+<li><strong>Assistance Capabilities:</strong> FR-4.1 (Basic Troubleshooting), FR-4.2 (Feature Explanation), FR-4.3 (Basic Configuration Guidance), FR-4.4 (Core Code Examples), FR-4.5 (Basic Cost Optimization).</li>
+<li><strong>Security & Privacy:</strong> FR-5.1 to FR-5.5 (all essential security and privacy requirements).</li>
+</ul>
+<li><strong>Rollout Strategy:</strong></li>
+<ul>
+<li><strong>Internal Beta:</strong> Initial release to Nebius internal teams for extensive testing and dogfooding.</li>
+<li><strong>Closed Beta:</strong> Rollout to a select group of external power users and strategic customers for early feedback and validation.</li>
+<li><strong>General Availability (GA):</strong> Public launch of the MVP, clearly communicating the initial scope and future roadmap.</li>
+</ul>
+</ul>
+<h4>Phase 2: Advanced Context & Proactive Assistance - Target: Q3 2025</h4>
+
+<ul>
+<li><strong>Focus:</strong> Deepen AINA's understanding of user workflows, expand its assistance capabilities, and introduce proactive suggestions for optimization and efficiency.</li>
+<li><strong>Key Features:</strong></li>
+<ul>
+<li><strong>Expanded Contextual Awareness:</strong> FR-2.2 (Active Project/Resource Metadata Access) and FR-2.3 (Advanced Log & Error Analysis) for more intelligent debugging and optimization.</li>
+<li><strong>Proactive Cost Optimization:</strong> AINA actively monitors running workloads and suggests more efficient GPU usage, instance types, and auto-scaling configurations <em>before</em> the user asks.</li>
+<li><strong>Performance Tuning Recommendations:</strong> Guidance on optimizing model training parameters, distributed training setups, and inference performance based on active workloads and identified bottlenecks.</li>
+<li><strong>CLI Integration (AINA-CLI):</strong> AINA functionality accessible directly from the Nebius CLI, allowing users to ask questions and generate commands without leaving their terminal.</li>
+<li><strong>Advanced Code Generation:</strong> Generate more complex, multi-step code examples and templates for MLOps pipelines and specific use cases.</li>
+<li><strong>Enhanced Knowledge Base:</strong> Incorporate common support ticket solutions, internal runbooks, and curated community content into AINA's knowledge.</li>
+<li><strong>Personalized Learning Paths:</strong> Suggest relevant Nebius Academy modules, tutorials, or advanced documentation based on user activity, queries, and identified skill gaps.</li>
+</ul>
+</ul>
+<h4>Phase 3: Ecosystem & Proactive Workflow Guidance - Target: Q1 2026</h4>
+
+<ul>
+<li><strong>Focus:</strong> Provide end-to-end workflow assistance, deeper ecosystem integration, and predictive capabilities to guide users through their entire AI journey on Nebius.</li>
+<li><strong>Key Features:</strong></li>
+<ul>
+<li><strong>IDE Plugin (AINA-IDE):</strong> Integrate AINA into popular IDEs (e.g., VS Code, Jupyter notebooks) for inline code assistance, real-time debugging, and seamless Nebius API interaction.</li>
+<li><strong>Proactive Workflow Suggestions:</strong> AINA identifies common development patterns (e.g., "You've completed training a model, would you like help deploying it for inference?") and suggests the next logical steps or best practices.</li>
+<li><strong>Advanced Compliance & Security Guidance:</strong> Offer more specific, regulatory-aware advice for data sovereignty and compliance based on project settings, detected data types, and geographical regions.</li>
+<li><strong>Partner Ecosystem Integration:</strong> Provide guidance on integrating with partner tools and services available through the Nebius ecosystem (e.g., data labeling services, specialized model hubs).</li>
+<li><strong>Multi-modal Interaction (Exploratory):</strong> Investigate and potentially implement voice-based interaction with AINA for specific use cases (e.g., hands-free monitoring queries).</li>
+<li><strong>Predictive Capacity & Cost Forecasting:</strong> Based on historical usage and defined objectives, AINA provides predictive insights into future capacity needs and cost implications.</li>
+</ul>
+</ul>
+<hr>
+            </div>
+        </section>
+        
+        <section class="tab-content hidden" id="design">
+            <div class="content-body">
+                <h2>Design System Strategy & Prototypes</h2>
+                <p>An interactive high-fidelity mockup has been generated within Stitch based on the product requirements. You can review the structure of the layout, responsive constraints, and colors using the workspace link below:</p>
+                <div style="text-align: center; margin: 40px 0;">
+                    <a href="https://stitch.withgoogle.com/projects/16809493958950710063" target="_blank" class="btn large primary">Open Stitch Interactive Editor</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.remove('hidden');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
